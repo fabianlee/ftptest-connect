@@ -39,12 +39,24 @@ public class FTPDeleteTest {
 		
 		System.out.println("changing to dir: " + changeDir);
 		client.changeDirectory(changeDir);
-		
-		System.out.println("deleting file: " + deleteFile);
-		client.deleteFile(deleteFile);
+
+		// if user passed in argument "*" then delete all files in directory
+		if("*".equals(deleteFile)) {
+			System.out.println("deleting all files in dir: " + changeDir);
+			list = client.list();
+			for(FTPFile file : list) {
+				if(file.getType()==FTPFile.TYPE_FILE) {
+					System.out.println("deleted file: " + file.getName());
+					client.deleteFile(file.getName());
+				}
+			}
+		}else {
+			System.out.println("deleting single named file: " + deleteFile);
+			client.deleteFile(deleteFile);
+		}
 		
 		// delete first file found in directory
-		System.out.println("file listing after deletion");
+		System.out.println("final file listing after deletion");
 		list = client.list();
 		for(FTPFile file : list) {
 			System.out.println(file.getName());
