@@ -7,10 +7,10 @@ public class FTPDeleteTest {
 	
 	public static void main(String args[]) throws Exception {
 		
-		if(args.length<8) {
+		if(args.length<7) {
 			System.err.println("Usage: ftpHost ftpUser ftpPass proxyHost proxyPort changeDir deleteFile");
 			System.err.println("Example: ftp.ubuntu.com myuser myP4ss! squidFTPProxy 3128 /files filetodelete.txt");
-			System.err.println(args.length);
+			System.err.println("Need 7 arguments, only provided " + args.length);
 			System.exit(1);
 		}
 		

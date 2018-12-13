@@ -10,7 +10,7 @@ public class FTPConnectTest {
 		if(args.length<6) {
 			System.err.println("Usage: ftpHost ftpUser ftpPass proxyHost proxyPort changeDir");
 			System.err.println("Example: ftp.ubuntu.com myuser myP4ss! squidFTPProxy 3128 /files/");
-			System.err.println(args.length);
+			System.err.println("Need 6 arguments, only provided " + args.length);
 			System.exit(1);
 		}
 		
@@ -39,7 +39,6 @@ public class FTPConnectTest {
 		System.out.println("changing to dir: " + changeDir);
 		client.changeDirectory(changeDir);
 		
-		// delete first file found in directory
 		System.out.println("listing after change directory:");
 		list = client.list();
 		for(FTPFile file : list) {
